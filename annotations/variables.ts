@@ -43,14 +43,13 @@ const logNumber: (num: number) => void = (num: number) => {
   console.log(num);
 };
 
-// When to use annotations 
 // 1) Function that returns the 'any' type.
 // When there is an 'any' type TS can't show us the error. For example this would return any `const coordinates = JSON.parse(json);`
 // To fix the any you can do the below. 
 const json = '{"x": 10, "y": 20}';
 const coordinates: { x: number; y: number } = JSON.parse(json);
 
-// 2) When we declare a variable on one line and initalise it later. 
+// 2) When we declare a variable on one line and initialize it later.
 let words = ['red', 'green', 'blue'];
 let foundWord;
 
@@ -59,6 +58,19 @@ for (let i = 0; i < words.length; i++) {
     foundWord = true;
   };
 };
+
+// 3) Variable whose type cannot be inferred correctly
+// The below is an example when you might have two different types. This is saying to expect the type to be either a boolean or a number.  
+let numbersArray = [-10, -1, 12];
+let numberAboveZero: boolean | number = false;
+
+for (let i = 0; i < numbersArray.length; i++) {
+  if (numbersArray[i] > 0) {
+    numberAboveZero = numbers[i];
+  };
+};
+
+
 // Type inference
 // This is when typescript automatically guesses the type
 // e.g. you don't need to put :string, :number etc..
